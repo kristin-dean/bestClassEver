@@ -33,18 +33,20 @@ var graphDist = function(dist)
 
   //Xaxis
   var xScale = d3.scaleLinear()
-            //.domain(d3.extent(dist))
+            .domain(d3.extent(dist))
             //.domain([0,d3.max(dist)])
-            .domain([0,100])
-            //.nice()
+            //.domain([0,100])
+            .nice()
             .range([0,width]);
 
   //frequency
   var binMaker = d3.histogram() //will be renamed to bin in next release!!!
               .domain(xScale.domain())
               .thresholds(xScale.ticks(50));
-   var bins=binMaker(dist);
 
+
+   var bins=binMaker(dist);
+   console.log("bins",bins);
   //now the yAxis
 
   var percentage =function(d)
@@ -108,8 +110,17 @@ svg.append("g")
 
 //https://github.com/d3/d3/blob/master/API.md#random-numbers-d3-random
 var distribution = d3.randomNormal(50,12);
+//var distribution = d3.randomUniform(0,100);
+//var distribution = d3.randomLogNormal(.5,1);
+//var distribution = d3.randomBates(.001);
 
-var dataset = d3.range(1000).map(function(x) {return distribution();});
+//var distribution = d3.randomIrwinHall(50);
+//var distribution = d3.randomExponential(.05);
+
+
+
+var dataset = d3.range(10000)
+                .map(function(x) {return distribution();});
 
 console.log(dataset);
 
