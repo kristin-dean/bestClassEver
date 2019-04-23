@@ -85,7 +85,7 @@ var puppies = plotLand.append("g")
   var drawLine = d3.line()
               .x(function(d,i){return xScale(i)})
               .y(function(d) {return yScale(d.puppy)})
-//              .curve(d3.curveCatmullRom)
+              .curve(d3.curveCatmullRom)
 
   puppies.append("g").
   attr("class","line")
@@ -109,8 +109,8 @@ var puppies = plotLand.append("g")
   .datum(pound)
   .attr("d",drawArea)
   .attr("fill",colors("puppy"))
-
 */
+
 
 
 
@@ -130,11 +130,13 @@ var legendLines = legend.selectAll("g")
                       {return "translate(0,"+ (i*20)+")"; })
                 .on("mouseout",function(d)
                   {
-                    d3.select("#"+d+" .dots").classed("hidden",true)
+                    d3.select("#"+d+" .dots")
+                    .classed("hidden",true)
                   })
                 .on("mouseover",function(d)
                     {
-                      d3.select("#"+d+" .dots").classed("hidden",false);
+                      d3.select("#"+d+" .dots")
+                      .classed("hidden",false);
                     })
                 .on("click",function(d)
                     {
